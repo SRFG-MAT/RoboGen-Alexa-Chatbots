@@ -1,0 +1,155 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "entscheidungsbaum",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": [
+                        "Abbrechen"
+                    ]
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": [
+                        "Hilfe"
+                    ]
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": [
+                        "Stopp"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": [
+                        "Home"
+                    ]
+                },
+                {
+                    "name": "Entscheidungsbaum_Stress",
+                    "slots": [],
+                    "samples": [
+                        "Starte Entscheidungsbaum Stress",
+                        "Stress"
+                    ]
+                },
+                {
+                    "name": "AMAZON.YesIntent",
+                    "samples": [
+                        "Ja"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NoIntent",
+                    "samples": [
+                        "Nein"
+                    ]
+                },
+                {
+                    "name": "AMAZON.PauseIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ResumeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.MoreIntent",
+                    "samples": [
+                        "Mehr"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateSettingsIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NextIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PageUpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PageDownIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PreviousIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollRightIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollDownIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollLeftIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollUpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "Entscheidungsbaum_Sport",
+                    "slots": [],
+                    "samples": [
+                        "Starte Entscheidungsbaum Sport",
+                        "Sport"
+                    ]
+                },
+                {
+                    "name": "Entscheidungsbaum_Intro",
+                    "slots": [],
+                    "samples": [
+                        "Starte Entscheidungsbaum Intro",
+                        "Intro"
+                    ]
+                },
+                {
+                    "name": "Option_X",
+                    "slots": [
+                        {
+                            "name": "number",
+                            "type": "AMAZON.FOUR_DIGIT_NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "Antwort {number}",
+                        "Auswahl {number}",
+                        "Option {number}"
+                    ]
+                },
+                {
+                    "name": "Option_Name",
+                    "slots": [
+                        {
+                            "name": "name",
+                            "type": "AMAZON.US_FIRST_NAME"
+                        }
+                    ],
+                    "samples": [
+                        "{name}",
+                        "Mein name ist {name}"
+                    ]
+                },
+                {
+                    "name": "Thema_Anzeigen",
+                    "slots": [],
+                    "samples": [
+                        "Thema anzeigen",
+                        "Zeig mir mein ausgewähltes Thema"
+                    ]
+                }
+            ],
+            "types": []
+        }
+    }
+}
