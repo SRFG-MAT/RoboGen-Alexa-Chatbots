@@ -147,6 +147,14 @@
                         "Thema anzeigen",
                         "Zeig mir mein ausgewähltes Thema"
                     ]
+                },
+                {
+                    "name": "Nutzerdaten_Entfernen",
+                    "slots": [],
+                    "samples": [
+                        "Lösche mich",
+                        "Nutzerdaten löschen"
+                    ]
                 }
             ],
             "types": []

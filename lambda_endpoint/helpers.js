@@ -271,5 +271,29 @@ module.exports = {
             directive.updatedIntent = updatedIntent;
         }
         return [directive];
+    },
+    
+    resetStateMachine: function(dataStateMachine) {
+        
+        dataStateMachine.answerRequired = false;
+	    dataStateMachine.selectionRequired = false;
+	    dataStateMachine.treeType = "none";
+	    dataStateMachine.treeDepth = 0;
+    }, 
+    
+    resetUserData: function(dataUserInfos) {
+
+	    dataUserInfos.userName = "Fremder oder Fremde";
+	    dataUserInfos.userWantsToTalk = "no";
+	    dataUserInfos.isStressed = false;        
+	    dataUserInfos.hasDiabetes = false;        
+	    dataUserInfos.requiredTopic = "none";
+	    dataUserInfos.stressReasons = "none";  
+	    dataUserInfos.stressSources = "none";  
+	    dataUserInfos.sportVolume = "none";    
+	    dataUserInfos.sportUnderstateReason = "none";
+	    dataUserInfos.sportOverstateReason = "none"; 
+	    dataUserInfos.sportUnhappyReason = "none";
+	    dataUserInfos.sportAdditionalReasons = "none";
     }
 }

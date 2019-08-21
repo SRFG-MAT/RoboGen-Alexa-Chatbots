@@ -1,0 +1,14 @@
+{
+	"userName" : "Fremder oder Fremde",
+	"userWantsToTalk" : "no",
+	"isStressed" : false,        
+	"hasDiabetes" : false,        
+	"requiredTopic": "none",
+	"stressReasons" : "none",  
+	"stressSources" : "none",  
+	"sportVolume" : "none",    
+	"sportUnderstateReason" : "none",
+	"sportOverstateReason" : "none", 
+	"sportUnhappyReason" : "none",
+	"sportAdditionalReasons" : "none"
+}

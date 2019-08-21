@@ -1,0 +1,34 @@
+
+// ----------------------------------------------------------------------------------------------------
+// Since JSON does not allow to use comments, I added this file to comment our saved members
+// ----------------------------------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------------------------------
+// holds the saved information about the user
+// ----------------------------------------------------------------------------------------------------
+var dataUserInfos =        
+{        
+	userName : 'Fremder oder Fremde',   // holding firstname of user
+	userWantsToTalk : 'no',		        // no, yes, later at date XXX
+	isStressed : false,        
+	hasDiabetes : false,        
+	requiredTopic: 'none',				// none, stress, sport
+	stressReasons : 'none',             // none, GoalConflict, NegativeAffect, General
+	stressSources : 'none',             // none, Stressoren, Stressverstärker, Stressreaktionen
+	sportVolume : 'none',               // none, understate, overstate, unhappy
+	sportUnderstateReason : 'none',     // none, notime, dislike, forget, badmood, other
+	sportOverstateReason : 'none',      // none, weightfear, other
+	sportUnhappyReason : 'none',        // none, dislike, badmood, other
+	sportAdditionalReasons : 'none'     // none, hypoglycemia, secret, noimpact, glucose, other
+};
+
+// ----------------------------------------------------------------------------------------------------
+// hoolds the state machine values of current execution
+// ----------------------------------------------------------------------------------------------------
+var dataStateMachine =
+{
+	answerRequired : false,             // JA oder Nein
+	selectionRequired : false,          // Option Eins, Option Zwei, Option Drei
+	treeType : 'none',			        // none, intro, stress, sport
+	treeDepth : 0                       // 0=none , 1=level1 , 2=level2
+};

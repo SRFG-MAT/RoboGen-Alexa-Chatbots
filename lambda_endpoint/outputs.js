@@ -225,4 +225,13 @@ module.exports = {
     getOutputString_Name: function() {
         return `Dieses Wort verstehe ich nicht! Ist das dein Name? Danke für die Info, ich werde ihn mir einprägen! Tschüss `;
     },
+    
+    
+    
+    //-------------------------------------------------------------------------
+    // user data delete
+    //-------------------------------------------------------------------------
+    getOutputString_DeleteUserData: function() {
+        return `Alle gespeicherten Informationen über den Benutzer wurden gelöscht!`;
+    },
 }

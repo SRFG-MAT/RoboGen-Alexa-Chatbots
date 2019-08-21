@@ -20,6 +20,7 @@
 // hilfe
 // abbrechen
 // stopp
+// Nutzerdaten löschen
 // ...
 
 //-------------------------------------------------------------------------
@@ -29,40 +30,27 @@
 const Alexa = require('alexa-sdk');
 const APP_ID = undefined;  // TODO replace with your app ID (OPTIONAL).
 
-let speechOutput = '';           // Rückgabewert der Antwort
+let calledInAndroidMode = false;
+let speechOutput = '';
 let welcomeOutput_WithDisplay = "Öffne Entscheidungsbäume Skill. Du kannst jetzt einen Entscheidungsbaum auswählen!";
 let welcomeOutput_WithoutDisplay = "Öffne Entscheidungsbäume Skill. Du kannst jetzt einen Entscheidungsbaum auswählen! Dieses Gerät hat keinen Display, daher können visuelle Features des Skill nicht unterstützt werden.";
+let goodbyeOutput = "Schließe Entscheidungsbäume Skill. Ihre Daten und der aktuelle Ort des Verlassens wurden gespeichert!";
 let welcomeReprompt = "reprompt text";
 let reprompt;
 
+// load javascript modules
 const inputs = require('./inputs.js');
 const outputs = require('./outputs.js');
 const display = require('./display.js');
 const helpers = require('./helpers.js');
 const video = require('./video.js');
 
-var dataStateMachine =
-{
-	answerRequired : false,             // JA oder Nein
-	selectionRequired : false,          // Option Eins, Option Zwei, Option Drei
-	treeType : 'none',			        // none, intro, stress, sport
-	treeDepth : 0                       // 0=none , 1=level1 , 2=level2
-};        
-var dataUserInfos =        
-{        
-	userName : 'Fremder oder Fremde',   // holding firstname of user
-	userWantsToTalk : 'no',		        // no, yes, later at date XXX
-	isStressed : false,        
-	hasDiabetes : false,        
-	requiredTopic: 'none',				// none, stress, sport
-	stressReasons : 'none',             // none, GoalConflict, NegativeAffect, General
-	stressSources : 'none',             // none, Stressoren, Stressverstärker, Stressreaktionen
-	sportVolume : 'none',               // none, understate, overstate, unhappy
-	sportUnderstateReason : 'none',     // none, notime, dislike, forget, badmood, other
-	sportOverstateReason : 'none',      // none, weightfear, other
-	sportUnhappyReason : 'none',        // none, dislike, badmood, other
-	sportAdditionalReasons : 'none'     // none, hypoglycemia, secret, noimpact, glucose, other
-};
+// TODO: currently using :loadState and :saveState instead of this
+//const s3_loader = require('./saved_data/s3_loader.js');
+
+// load json storage files
+var dataUserInfos = require('./saved_data/data_user.json');
+var dataStateMachine = require('./saved_data/data_state.json');
 
 
 //-------------------------------------------------------------------------
@@ -72,11 +60,18 @@ const handlers = {
 	
 	'LaunchRequest': function () {
 		helpers.output_EmitandDisplay(this, display, welcomeOutput_WithDisplay, welcomeOutput_WithoutDisplay, welcomeReprompt, 1);
+		this.emit(':loadState', true);
 	},
     'SessionEndedRequest': function () {
 		speechOutput = '';
-		//this.emit(':saveState', true);//uncomment to save attributes to db on session end
-		this.emit(':tell', speechOutput);
+    	helpers.resetStateMachine(dataStateMachine);
+		helpers.output_EmitandDisplay(this, display, goodbyeOutput, goodbyeOutput, welcomeReprompt, 1);
+		this.emit(':saveState', true);
+    },
+    'Nutzerdaten_Entfernen': function () {
+    	helpers.resetUserData(dataUserInfos);
+    	speechOutput = outputs.getOutputString_DeleteUserData();
+    	helpers.output_EmitandDisplay(this, display, speechOutput, speechOutput, welcomeReprompt, 1);
     },
     //-------------------------------------------------------------------------
     // Intro
@@ -406,7 +401,7 @@ const handlers = {
     //-------------------------------------------------------------------------
     'Thema_Anzeigen': function () {
     	
-    	if(dataUserInfos.requiredTopic == 'stress' && dataStateMachine.treeDepth == 0)
+    	if(dataUserInfos.requiredTopic == 'stress')
     	{
     	    helpers.httpsGet('p2dm.salzburgresearch.at', '/de/stress-praevention/', (theResult) => {
                 speechOutput = theResult;
@@ -417,7 +412,7 @@ const handlers = {
 
     		dataUserInfos.requiredTopic = 'none'; // reset topic required
     	}
-    	else if(dataUserInfos.requiredTopic == 'sport' && dataStateMachine.treeDepth == 0)
+    	else if(dataUserInfos.requiredTopic == 'sport')
     	{
     		helpers.httpsGet('p2dm.salzburgresearch.at', '/de/diabetes-ziele-mit-den-anderen-dingen-im-alltag-kombinieren/', (theResult) => {
                 speechOutput = theResult;
@@ -572,6 +567,7 @@ const handlers = {
     // Abbrechen (App schließen)
     //-------------------------------------------------------------------------
     'AMAZON.CancelIntent': function () {
+    	helpers.resetStateMachine(dataStateMachine);
 		speechOutput = outputs.getOutputString_Cancel();
 		this.emit(':tell', speechOutput);
 		this.close();
@@ -647,15 +643,37 @@ const handlers = {
     }
 };
 
-
 //-------------------------------------------------------------------------
 // export handler and registration
+// entry point to lambda function
 //-------------------------------------------------------------------------
-exports.handler = (event, context) => {
-    const alexa = Alexa.handler(event, context);
-    alexa.appId = APP_ID;
-    //alexa.resources = languageStrings;   // To enable string internationalization (i18n) features, set a resources object.
-    alexa.registerHandlers(handlers);
-	//alexa.dynamoDBTableName = 'DYNAMODB_TABLE_NAME'; //uncomment this line to save attributes to DB
-    alexa.execute();
+exports.handler = (event, context, callback) => {
+	
+	//-------------------------------------------------------------------------
+	// if this lambda function is called from Android App, it will have 
+	// first name and last name information in the event parameter, which are
+	// set to 'Android' and 'RoboGen'.
+	// In Android Mode we only send the dataUserInfos to the app
+	//-------------------------------------------------------------------------
+	if(event.firstName == "Android" && event.lastName == "RoboGen")
+	{
+		calledInAndroidMode = true;
+
+    	console.log("Received userdata_info.get() event from RoboGen Android App");
+    	context.succeed(dataUserInfos);
+	}
+	//-------------------------------------------------------------------------
+	// if this lambda function is not called by android, it is called as a 
+	// regular Alexa Skill from different devices with or without a display
+	// Examples: Echo Show, Fire 10 Tablet, Anki Vector, ...
+	//-------------------------------------------------------------------------
+	else
+	{
+		calledInAndroidMode = false;
+		
+    	const alexa = Alexa.handler(event, context);
+    	alexa.appId = APP_ID;
+    	alexa.registerHandlers(handlers);
+    	alexa.execute();
+	}
 };
