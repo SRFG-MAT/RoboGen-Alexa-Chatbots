@@ -1,6 +1,7 @@
 {
-	"answerRequired" : false, 
-	"selectionRequired" : false, 
-	"treeType" : "none",
-	"treeDepth" : 0        
+	"introComplete": false,
+	"selectedPath": [],
+	"lastOptions": [],
+	"lastSelection": "",
+	"lastInterventions": []
 }

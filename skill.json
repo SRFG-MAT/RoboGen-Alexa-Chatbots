@@ -106,14 +106,6 @@
                     ]
                 },
                 {
-                    "name": "Entscheidungsbaum_Intro",
-                    "slots": [],
-                    "samples": [
-                        "Starte Entscheidungsbaum Intro",
-                        "Intro"
-                    ]
-                },
-                {
                     "name": "Option_X",
                     "slots": [
                         {
@@ -122,30 +114,17 @@
                         }
                     ],
                     "samples": [
+                        "{number}",
                         "Antwort {number}",
                         "Auswahl {number}",
                         "Option {number}"
                     ]
                 },
                 {
-                    "name": "Option_Name",
-                    "slots": [
-                        {
-                            "name": "name",
-                            "type": "AMAZON.US_FIRST_NAME"
-                        }
-                    ],
-                    "samples": [
-                        "{name}",
-                        "Mein name ist {name}"
-                    ]
-                },
-                {
-                    "name": "Thema_Anzeigen",
+                    "name": "Thema_Merken",
                     "slots": [],
                     "samples": [
-                        "Thema anzeigen",
-                        "Zeig mir mein ausgewähltes Thema"
+                        "Thema merken"
                     ]
                 },
                 {
@@ -154,6 +133,38 @@
                     "samples": [
                         "Lösche mich",
                         "Nutzerdaten löschen"
+                    ]
+                },
+                {
+                    "name": "Entscheidungsbaum_Schlaf",
+                    "slots": [],
+                    "samples": [
+                        "Starte Entscheidungsbaum Schlaf",
+                        "Schlaf"
+                    ]
+                },
+                {
+                    "name": "Entscheidungsbaum_Spiele",
+                    "slots": [],
+                    "samples": [
+                        "Spiele",
+                        "Starte Entscheidungsbaum Spiele"
+                    ]
+                },
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "Fallback",
+                    "slots": [
+                        {
+                            "name": "anything",
+                            "type": "AMAZON.US_FIRST_NAME"
+                        }
+                    ],
+                    "samples": [
+                        "{anything}"
                     ]
                 }
             ],

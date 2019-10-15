@@ -1,34 +1,35 @@
+// ----------------------------------------------------------------------------------------------------
+// Since JSON does not allow to use comments, this file is used to comment on the data structures
+// ----------------------------------------------------------------------------------------------------
 
 // ----------------------------------------------------------------------------------------------------
-// Since JSON does not allow to use comments, I added this file to comment our saved members
-// ----------------------------------------------------------------------------------------------------
-
-// ----------------------------------------------------------------------------------------------------
-// holds the saved information about the user
+// holds the information about the user
 // ----------------------------------------------------------------------------------------------------
 var dataUserInfos =        
-{        
-	userName : 'Fremder oder Fremde',   // holding firstname of user
-	userWantsToTalk : 'no',		        // no, yes, later at date XXX
-	isStressed : false,        
-	hasDiabetes : false,        
-	requiredTopic: 'none',				// none, stress, sport
-	stressReasons : 'none',             // none, GoalConflict, NegativeAffect, General
-	stressSources : 'none',             // none, Stressoren, Stressverstärker, Stressreaktionen
-	sportVolume : 'none',               // none, understate, overstate, unhappy
-	sportUnderstateReason : 'none',     // none, notime, dislike, forget, badmood, other
-	sportOverstateReason : 'none',      // none, weightfear, other
-	sportUnhappyReason : 'none',        // none, dislike, badmood, other
-	sportAdditionalReasons : 'none'     // none, hypoglycemia, secret, noimpact, glucose, other
-};
+{
+	"showDiabetes" : false,        	// Boolean flag if diabetes topics are included
+	"showSenior": false,			// Boolean flag if senior topics are included
+	"shownInterventions": []		// Array of shown interventions as JSON objects (see below for details)
+}
 
 // ----------------------------------------------------------------------------------------------------
-// hoolds the state machine values of current execution
+// shownInterventions JSON object
+// ----------------------------------------------------------------------------------------------------
+{
+    "selectedPath": [],				// Array of DT IDs that led to the intervention
+    "shownIntervention": "",		// Interventiontext
+    "additionalLink": "",			// Link to additional information that can be opened in the app
+    "remember": false				// Boolean flag if the user chose to remember the intervention
+}
+
+// ----------------------------------------------------------------------------------------------------
+// holds the state machine values of current execution
 // ----------------------------------------------------------------------------------------------------
 var dataStateMachine =
 {
-	answerRequired : false,             // JA oder Nein
-	selectionRequired : false,          // Option Eins, Option Zwei, Option Drei
-	treeType : 'none',			        // none, intro, stress, sport
-	treeDepth : 0                       // 0=none , 1=level1 , 2=level2
-};
+	"introComplete": false,			// Boolean flag if the diabetes/senior topic questions have been asked
+	"selectedPath": [],				// Array of DT IDs that led to the current state
+	"lastOptions": [],				// Array of DT options connected to the last state
+	"lastSelection": "",			// DT ID of the last state
+	"lastInterventions": []			// Array of applicable intervention IDs
+}
