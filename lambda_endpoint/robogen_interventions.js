@@ -554,7 +554,7 @@ module.exports = [
 		]
 	},
 	{
-		"text": "Du kannst viele spannende Spiele mit mir spielen. Versuche es doch nach dem Verlassen einmal mit \"Alexa, starte Akinator\" oder \"Alexa, starte Mein Auftrag\".",
+		"text": "Du kannst viele spannende Spiele mit mir spielen. Versuche es doch nach dem Verlassen einmal mit \"Echo, öffne Wahrheit oder Lüge\", \"Echo, öffne Tierspiel\", \"Echo, starte Eins, Zwei oder Drei\" oder \"Echo, lass uns Märchen raten\".",
 		"link": "",
 		"codes": [
 			"GAM_General"
