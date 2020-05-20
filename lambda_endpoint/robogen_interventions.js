@@ -353,7 +353,7 @@ module.exports = [
 		]
 	},
 	{
-		"text": "Die Zeiten ändern sich und heute werden viele Kontakte übers Internet gesucht. Die technischen Neuerungen stellen besonders SeniorInnen vor große Herausforderungen. Dabei könnten gerade ältere Personen im Internet Freunde, Kinder und Enkelkinder häufiger erreichen. Wenn du im Umgang mit Tablets, Computern und Smartphones nicht fit bist, frag doch mal deine Kinder oder Enkelkinder, dir den Umgang mit den Geräten zu erklären. Auch gibt es viele Volkshochschulen, die speziell Internetkurse anbieten, in denen Senioren und Seniorinnen das Versenden von E-Mails, Surfen im Internet und noch mehr lernen.",
+		"text": "Die Zeiten ändern sich und heute werden viele Kontakte übers Internet gesucht. Die technischen Neuerungen stellen besonders Senioren und Seniorinnen vor große Herausforderungen. Dabei könnten gerade ältere Personen im Internet Freunde, Kinder und Enkelkinder häufiger erreichen. Wenn du im Umgang mit Tablets, Computern und Smartphones nicht fit bist, frag doch mal deine Kinder oder Enkelkinder, dir den Umgang mit den Geräten zu erklären. Auch gibt es viele Volkshochschulen, die speziell Internetkurse anbieten, in denen Senioren und Seniorinnen das Versenden von E-Mails, Surfen im Internet und noch mehr lernen.",
 		"link": "",
 		"codes": [
 			"SEN_Einsam"
@@ -449,7 +449,7 @@ module.exports = [
 		]
 	},
 	{
-		"text": "Es ist auch erlaubt \"Nein\" zu sagen. SeniorInnen müssen nichts mehr „leisten“ im Sinne von verdienen oder beweisen. Lehne eine Einladung ab, wenn du zu müde bist oder dich nicht gut fühlst. Lass das Telefon klingeln, wenn du gerade mit etwas anderem beschäftigt bist, und den Anrufbeantworter seine Pflicht tun.",
+		"text": "Es ist auch erlaubt \"Nein\" zu sagen. Senioren und Seniorinnen müssen nichts mehr „leisten“ im Sinne von verdienen oder beweisen. Lehne eine Einladung ab, wenn du zu müde bist oder dich nicht gut fühlst. Lass das Telefon klingeln, wenn du gerade mit etwas anderem beschäftigt bist, und den Anrufbeantworter seine Pflicht tun.",
 		"link": "",
 		"codes": [
 			"SEN_Zeitmanagement_Senior"
